@@ -188,3 +188,49 @@ Update a specific risk.
 Delete a specific risk.
 
 **Response:** `{ data: null, meta, errors }`
+
+---
+
+## Configuration
+
+### `GET /api/v1/config/risk-matrix`
+Returns the risk matrix configuration for the current tenant.
+
+**Response:**
+```json
+{
+  "data": {
+    "id": "uuid",
+    "tenant_id": "uuid",
+    "likelihood_labels": ["Rare", "Unlikely", "Possible", "Likely", "Almost Certain"],
+    "impact_labels": ["Negligible", "Minor", "Moderate", "Major", "Severe"],
+    "score_thresholds": {
+      "Low": 4,
+      "Medium": 9,
+      "High": 16,
+      "Critical": 25
+    }
+  },
+  "meta": { "request_id": "uuid" },
+  "errors": []
+}
+```
+
+### `PUT /api/v1/config/risk-matrix`
+Updates the risk matrix configuration for the current tenant.
+
+**Request:**
+```json
+{
+  "likelihood_labels": ["string", "string", "string", "string", "string"],
+  "impact_labels": ["string", "string", "string", "string", "string"],
+  "score_thresholds": {
+    "Low": 4,
+    "Medium": 9,
+    "High": 16,
+    "Critical": 25
+  }
+}
+```
+
+**Response:** `{ data: RiskMatrixConfigResponse, meta, errors }`

@@ -88,3 +88,16 @@
 | updated_at | DateTime(tz) | DEFAULT now(), ON UPDATE now() |
 
 **RLS:** Enabled + Forced. Tenant isolation + superadmin bypass.
+
+### risk_matrix_config
+| Column | Type | Constraints |
+| :--- | :--- | :--- |
+| id | UUID | PK, default uuid4 |
+| tenant_id | UUID | FK tenants.id, NOT NULL, INDEXED |
+| likelihood_labels | JSONB | NOT NULL |
+| impact_labels | JSONB | NOT NULL |
+| score_thresholds | JSONB | NOT NULL |
+| created_at | DateTime(tz) | DEFAULT now() |
+| updated_at | DateTime(tz) | DEFAULT now(), ON UPDATE now() |
+
+**RLS:** Enabled + Forced. Tenant isolation + superadmin bypass.
