@@ -15,6 +15,7 @@ from app.middleware.request_id import RequestIDMiddleware, request_id_ctx_var
 from app.middleware.tenant import TenantMiddleware
 from app.routers import health
 from app.routers import auth
+from app.routers import risks
 from app.schemas.responses import APIResponse, ErrorDetail, Meta
 
 # ---------------------------------------------------------------------------
@@ -146,6 +147,7 @@ def create_app() -> FastAPI:
     # --- Routers ---
     app.include_router(health.router)
     app.include_router(auth.router)
+    app.include_router(risks.router)
 
     # --- Startup event ---
     @app.on_event("startup")

@@ -1,3 +1,4 @@
+import pytest_asyncio
 """
 Tests for audit trail event listeners.
 
@@ -16,14 +17,14 @@ pytestmark = pytest.mark.asyncio
 TEST_DATABASE_URL = "postgresql+asyncpg://temper:temper@localhost:5432/temper"
 
 
-@pytest.fixture
+@pytest_asyncio.fixture
 async def engine():
     eng = create_async_engine(TEST_DATABASE_URL)
     yield eng
     await eng.dispose()
 
 
-@pytest.fixture
+@pytest_asyncio.fixture
 async def session_factory(engine):
     return async_sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
 

@@ -66,3 +66,25 @@
 1. `001_initial_schema.py` — tenants, users, user_tenant_roles tables
 2. `002_add_rls_policies.py` — RLS policies on users, user_tenant_roles
 3. `003_add_audit_logs.py` — audit_logs table with RLS and append-only rules
+
+### risks
+| Column | Type | Constraints |
+| :--- | :--- | :--- |
+| id | UUID | PK, default uuid4 |
+| tenant_id | UUID | FK tenants.id, NOT NULL, INDEXED |
+| title | String(255) | NOT NULL |
+| description | Text | NOT NULL |
+| threat_source | String(255) | NOT NULL |
+| vulnerability | String(255) | NOT NULL |
+| asset_at_risk | Text | NOT NULL |
+| category | String(50) | NOT NULL |
+| status | String(50) | NOT NULL, DEFAULT 'Open' |
+| likelihood | Integer | NOT NULL |
+| impact | Integer | NOT NULL |
+| inherent_risk_score | Integer | NOT NULL |
+| risk_owner_id | UUID | FK users.id, NULLABLE |
+| created_by | UUID | FK users.id, NOT NULL |
+| created_at | DateTime(tz) | DEFAULT now() |
+| updated_at | DateTime(tz) | DEFAULT now(), ON UPDATE now() |
+
+**RLS:** Enabled + Forced. Tenant isolation + superadmin bypass.

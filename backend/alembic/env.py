@@ -15,6 +15,8 @@ from app.models.base import Base
 from app.models.tenant import Tenant  # noqa: F401
 from app.models.user import User  # noqa: F401
 from app.models.user_tenant_role import UserTenantRole  # noqa: F401
+from app.models.risk import Risk  # noqa: F401
+from app.models.audit_log import AuditLog  # noqa: F401
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
