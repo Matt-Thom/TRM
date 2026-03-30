@@ -65,6 +65,6 @@
 - [ ] TASK-1.06: Entra ID OAuth2 flow — blocked by Azure app registration (manual step)
 
 ### Next Up: Phase 2
-- [ ] TASK-2.01: Risk Register — Data Model and API
+- [x] TASK-2.01: Risk Register — Data Model and API
 - [ ] TASK-2.02: Qualitative Scoring Matrix — Configuration API
 - [ ] TASK-2.03: Risk Dashboard — Next.js UI

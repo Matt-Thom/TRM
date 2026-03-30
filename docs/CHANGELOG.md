@@ -14,3 +14,6 @@
 
 ### Remaining Phase 1
 - TASK-1.06: Entra ID SSO — blocked by manual Azure app registration
+
+### 2026-03-30
+- Completed TASK-2.01: Risk Register — Data Model and API. Created `Risk` model with RLS policies, schemas, and router with CRUD endpoints. Added cursor pagination for list endpoint. Update `main.py` to use new router. Included comprehensive tests and `SCHEMA.md` updates.
