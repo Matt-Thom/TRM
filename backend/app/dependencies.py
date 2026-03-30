@@ -8,12 +8,17 @@ Wiring:
 from typing import AsyncGenerator
 
 import structlog
-from fastapi import Request
+from fastapi import Depends, HTTPException, Request, status
+from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
+from jose import JWTError
 from sqlalchemy import text
 
 from app.db import async_session_factory
+from app.services.auth import decode_token
 
 logger = structlog.get_logger(__name__)
+
+security = HTTPBearer()
 
 
 async def get_db_session(request: Request) -> AsyncGenerator:
@@ -34,13 +39,29 @@ async def get_superadmin_session() -> AsyncGenerator:
         yield session
 
 
-async def get_current_user(request: Request):
-    """Return the authenticated user for the current request.
+async def get_current_user(
+    credentials: HTTPAuthorizationCredentials = Depends(security),
+) -> dict:
+    """Extract and validate the current user from JWT."""
+    try:
+        payload = decode_token(credentials.credentials)
+    except JWTError:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid or expired token",
+        )
 
-    TODO(TASK-1.05): Decode the Bearer JWT from the Authorization header,
-    validate claims, and return the corresponding User ORM instance.
-    """
-    return None
+    if payload.get("type") != "access":
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid token type",
+        )
+
+    return {
+        "user_id": payload["sub"],
+        "tenant_id": payload["tenant_id"],
+        "role": payload["role"],
+    }
 
 
 async def get_tenant_id(request: Request) -> str | None:
