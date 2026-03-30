@@ -1,0 +1,28 @@
+version: "3.9"
+
+# Development overrides — applied automatically by Docker Compose when present.
+# Provides hot-reload volume mounts and development-specific settings.
+
+services:
+  backend:
+    volumes:
+      - ./backend:/app
+    environment:
+      - DEBUG=true
+      - LOG_LEVEL=debug
+
+  frontend:
+    volumes:
+      - ./frontend:/app
+      # Prevent host node_modules from overriding container's installed modules
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+
+  worker:
+    volumes:
+      - ./backend:/app
+    environment:
+      - DEBUG=true
+      - LOG_LEVEL=debug
+    command: celery -A app.worker worker --loglevel=debug
