@@ -14,7 +14,8 @@ class RiskBase(BaseModel):
     description: str
     threat_source: str = Field(..., max_length=255)
     vulnerability: str = Field(..., max_length=255)
-    asset_at_risk: str
+    asset_at_risk: Optional[str] = None
+    asset_id: Optional[uuid.UUID] = None
     category: RiskCategory
     status: RiskStatus = RiskStatus.OPEN
     likelihood: int = Field(..., ge=1, le=5)

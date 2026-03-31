@@ -31,6 +31,27 @@ class Settings(BaseSettings):
     JWT_REFRESH_TOKEN_TTL: int = 604800  # 7 days
     JWT_ALGORITHM: str = "HS256"
 
+    # ConnectWise API
+    CW_COMPANY_ID: str = ""
+    CW_PUBLIC_KEY: str = ""
+    CW_PRIVATE_KEY: str = ""
+    CW_CLIENT_ID: str = ""
+    CW_BASE_URL: str = ""
+
+    # MS Entra / Graph API
+    ENTRA_TENANT_ID: str = ""
+    ENTRA_CLIENT_ID: str = ""
+    ENTRA_CLIENT_SECRET: str = ""
+    GRAPH_API_ENDPOINT: str = "https://graph.microsoft.com/v1.0"
+    GRAPH_API_SCOPES: str = "https://graph.microsoft.com/.default"
+
+    # SMTP (Email)
+    SMTP_HOST: str = ""
+    SMTP_PORT: int = 587
+    SMTP_USER: str = ""
+    SMTP_PASSWORD: str = ""
+    SMTP_FROM: str = "noreply@temper.local"
+
     # CORS
     CORS_ORIGINS: list[str] = ["http://localhost:3000"]
 
