@@ -150,6 +150,7 @@ def create_app() -> FastAPI:
     app.include_router(config.router)
     app.include_router(auth.router)
     app.include_router(risks.router)
+    app.include_router(risk_matrix.router)
 
     # --- Startup event ---
     @app.on_event("startup")
