@@ -16,15 +16,21 @@ export interface Risk {
   id: string;
   title: string;
   description: string;
-  threatSource: string;
+  threat_source: string;
   vulnerability: string;
-  assetAtRisk: string;
+  asset_at_risk: string;
   category: string;
   status: "Open" | "Under Review" | "Mitigated" | "Accepted" | "Closed";
   likelihood: number;
   impact: number;
-  inherentRiskScore: number;
+  inherent_risk_score: number;
   riskOwnerId: string | null;
   createdAt: string;
   updatedAt: string;
+}
+
+export interface RiskListResponse {
+  items: Risk[];
+  next_cursor: string | null;
+  has_more: boolean;
 }

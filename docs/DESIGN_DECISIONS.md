@@ -70,3 +70,14 @@
 - **Alternatives Considered:**
   - Server-side sessions with Redis — rejected (adds state management complexity)
   - Single long-lived token — rejected (larger exposure window)
+
+## DD-007: Multiplicative Risk Scoring Model
+- **Date:** 2026-03-30
+- **Status:** Accepted
+- **Context:** Quantitative representation of qualitative risk labels
+- **Decision:** Use a multiplicative scoring model (`inherent_risk_score` = `likelihood` × `impact`) on a 5x5 matrix
+- **Rationale:** A multiplicative approach provides greater separation between critical risks (5x5=25) and low risks (1x1=1) compared to an additive model (5+5=10 vs 1+1=2). It ensures high-likelihood/high-impact risks are mathematically distinct from moderate combinations.
+- **Alternatives Considered:**
+  - Additive scoring — rejected (insufficient spread, e.g., 1+5 = 5+1 = 3+3 = 6)
+  - Custom weighting (e.g., impact weighted higher than likelihood) — rejected (adds unnecessary complexity for MVP; 31000 standard allows equal weighting)
+- **Consequences:** The scoring thresholds must cover the range 1-25. The front-end must dynamically calculate and colour-code based on the configured thresholds.

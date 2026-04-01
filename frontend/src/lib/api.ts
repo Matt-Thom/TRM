@@ -31,3 +31,35 @@ api.interceptors.response.use(
 );
 
 export default api;
+
+// API methods for Phase 2: Core Risk Management Engine
+
+export async function getRiskMatrix() {
+  const response = await api.get("/config/risk-matrix");
+  return response.data;
+}
+
+export async function getRisks() {
+  const response = await api.get("/risks");
+  return response.data;
+}
+
+export async function getRisk(id: string) {
+  const response = await api.get(`/risks/${id}`);
+  return response.data;
+}
+
+export async function createRisk(data: any) {
+  const response = await api.post("/risks", data);
+  return response.data;
+}
+
+export async function updateRisk(id: string, data: any) {
+  const response = await api.put(`/risks/${id}`, data);
+  return response.data;
+}
+
+export async function deleteRisk(id: string) {
+  const response = await api.delete(`/risks/${id}`);
+  return response.data;
+}
