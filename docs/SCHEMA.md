@@ -94,9 +94,9 @@
 | :--- | :--- | :--- |
 | id | UUID | PK, default uuid4 |
 | tenant_id | UUID | FK tenants.id, NOT NULL, INDEXED |
-| likelihood_labels | JSONB | NOT NULL |
-| impact_labels | JSONB | NOT NULL |
-| score_thresholds | JSONB | NOT NULL |
+| likelihood_labels | JSONB | NOT NULL, DEFAULT '["Rare", "Unlikely", "Possible", "Likely", "Almost Certain"]' |
+| impact_labels | JSONB | NOT NULL, DEFAULT '["Negligible", "Minor", "Moderate", "Major", "Severe"]' |
+| score_thresholds | JSONB | NOT NULL, DEFAULT '{"Low": 4, "Medium": 9, "High": 16, "Critical": 25}' |
 | created_at | DateTime(tz) | DEFAULT now() |
 | updated_at | DateTime(tz) | DEFAULT now(), ON UPDATE now() |
 

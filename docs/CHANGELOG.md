@@ -18,16 +18,18 @@
 ### 2026-03-30
 - Completed TASK-2.01: Risk Register — Data Model and API. Created `Risk` model with RLS policies, schemas, and router with CRUD endpoints. Added cursor pagination for list endpoint. Update `main.py` to use new router. Included comprehensive tests and `SCHEMA.md` updates.
 
+
 ### 2026-03-30
 - Implemented **TASK-2.02: Qualitative Scoring Matrix — Configuration API**
   - Added `risk_matrix_config` table and `RiskMatrixConfig` model with RLS policies.
   - Implemented `/api/v1/config/risk-matrix` GET and PUT endpoints for tenant admins.
   - Created `seed_risk_matrix.py` script to seed default labels for existing tenants.
+  - Added integration tests for risk matrix configuration.
 
 - Implemented **TASK-2.03: Risk Dashboard — Next.js UI**
   - Used Stitch to generate a high-quality dashboard component.
   - Implemented data fetching and UI for the Risk Register, connecting it to the backend API.
-  - Implemented risk creation and editing forms.
+  - Implemented risk creation and editing forms with dynamic colour coding of risk scores.
 
 - Implemented **TASK-3.01: Celery + Redis**
   - Added Celery worker configuration in `backend/app/worker.py`.

@@ -217,7 +217,7 @@ Returns the risk matrix configuration for the current tenant.
 ```
 
 ### `PUT /api/v1/config/risk-matrix`
-Updates the risk matrix configuration for the current tenant.
+Updates the risk matrix configuration for the current tenant. Admin only.
 
 **Request:**
 ```json
