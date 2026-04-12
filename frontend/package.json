@@ -13,7 +13,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "zustand": "^5.0.0",
-    "axios": "^1.7.0"
+    "axios": "^1.15.0"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
